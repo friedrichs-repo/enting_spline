@@ -40,6 +40,8 @@ def enting(y_d, cut_off_period, x_d=None):
     - The code in wafo_interpolate is based on wafo 0.11 code for Python 2.6
       (https://pypi.org/project/wafo/), adapted to be compatible with Python 3,
       and tested against a Fortran implementation of the smoothing spline.
+      NOTE: a potential alternative to wafo 0.11 is the pywafo project
+      (https://github.com/wafo-project/pywafo/)
     """
 
     if x_d is not None:
