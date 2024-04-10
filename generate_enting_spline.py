@@ -2,7 +2,7 @@ from wafo_interpolate import SmoothSpline
 import numpy as np
 
 
-def enting(y_d, cut_off_period, x_d=None):
+def enting(y_d, cut_off_period, x_d=None, x_out=None):
     """
     Generate a smoothing 'Enting' spline through a 1d array y_d with a given cut-off period.
 
@@ -22,6 +22,9 @@ def enting(y_d, cut_off_period, x_d=None):
         have the same length as y_d. If not provided, it is assumed that the data points
         are evenly spaced in time, and x_d is generated accordingly. The cut_off_period
         needs to be provided in the same units as x_d.
+
+    x_out : array-like, optional
+        The time points at which enting spline should be sampled
 
     Returns:
     --------
@@ -57,5 +60,8 @@ def enting(y_d, cut_off_period, x_d=None):
     p = 1. / (1 + la)
     # Spline through data
     pp = SmoothSpline(x_d, y_d, p)
-    data_sp = pp(x_d)
+    if x_out is None:
+        data_sp = pp(x_d)
+    elif x_out is not None:
+        data_sp = pp(x_out)
     return data_sp
